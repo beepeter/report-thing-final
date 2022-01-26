@@ -1,8 +1,9 @@
 from datetime import datetime
 import pytz
-
+global s
 
 class timeFind:
+    # I tried to compile locations in a timezone
     def timezone(self):
         locationZone = {
           "UTCP1": {
@@ -52,16 +53,22 @@ class timeFind:
             "Western Sahara": {"Laayoune"}
           }
         }
+    # for finding out what time zone you are using    
     def findTime(self):
-        print("""be sure to replace spaces with underscores (ex: new_york)
+        s = 1
+        while s == 1:
+            try:
+               print("""be sure to replace spaces with underscores (ex: new_york)
 """)
-        country = input("""what country do you live in or do you live in europe
+               country = input("""what country do you live in or do you live in europe
 """)
-        cityProvince = input(
+               cityProvince = input(
             """what province/state do you live in or capital of your country if you live in europe
 """)
-        tz_WP = pytz.timezone(f'{country}/{cityProvince}')
-        datetime_WP = datetime.now(tz_WP)
-        print("Your time:", datetime_WP.strftime("%H:%M:%S"))
-
-
+               tz_WP = pytz.timezone(f'{country}/{cityProvince}')
+               datetime_WP = datetime.now(tz_WP)
+               print("Your time:", datetime_WP.strftime("%H:%M:%S"))
+               s = 0
+            except:
+                print("not a valid location")
+            
